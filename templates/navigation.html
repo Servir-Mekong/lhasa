@@ -1,0 +1,97 @@
+{% load static %}
+<div class="container mb-0 pb-0">
+    <!-- Navigation Partners Logo -->
+    <div class="row">
+        <!-- Mobile view -->
+        <div class="d-block d-sm-none">
+            <div class="row">
+                <ul class="d-flex justify-content-between list-group list-group-horizontal">
+                    <li class="list-group-item">
+                        <a href="https://www.usaid.gov/" target="_blank"><img class="img-fluid" src="{% static 'images/usaid.png' %}" alt="USAID"></a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="https://www.nasa.gov/" target="_blank"><img class="img-fluid nasa" src="{% static 'images/nasa-logo.svg' %}" alt="NASA"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <ul class="d-flex justify-content-between list-group list-group-horizontal">
+                    <li class="list-group-item">
+                        <a href="https://www.adpc.net/" target="_blank"><img class="adpc" src="{% static 'images/adpc.png' %}" alt="ADPC"></a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="https://servir.adpc.net/" target="_blank"><img class="img-fluid" src="{% static 'images/servir-mekong.png' %}" alt="SERVIR-MEKONG"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Desktop/Laptop view -->
+        <div class="d-none d-sm-block">
+            <div class="row">
+                <div class="col-8 d-flex justify-content-start">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item">
+                            <a href="https://www.usaid.gov/" target="_blank"><img class="img-fluid text-center usaid" src="{% static 'images/usaid.png' %}" alt="USAID"></a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="https://www.nasa.gov/" target="_blank"><img class="img-fluid nasa" src="{% static 'images/nasa-logo.svg' %}" alt="NASA"></a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="https://www.adpc.net/" target="_blank"><img class="img-fluid adpc pt-1" src="{% static 'images/adpc.png' %}" alt="ADPC"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-4">
+                    <ul class="d-flex justify-content-end list-group list-group-horizontal">
+                        <li class="list-group-item">
+                            <a href="https://servir.adpc.net/" target="_blank"><img class="img-fluid servir-mekong pt-1" src="{% static 'images/servir-mekong.png' %}" alt="SERVIR-MEKONG"></a>
+                        </li>
+                    </ul> 
+                </div>   
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Navigation -->
+<div class="navigation mb-0 pb-0">
+    <div class="container mb-0 pb-0">
+        <nav class="navbar navbar-expand-lg mb-0 pb-0">
+            <a class="navbar-brand ms-0 ps-0" href="/">
+                Landslide Hazard Assessment for Situational Awareness
+            </a>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerMenu" aria-controls="navbarTogglerMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span><i class="fa fa-bars text-white"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% url 'home' as homePage %} 
+                    <li class="nav-item {% if request.path == homePage %}active{% endif %}">
+                        <a class="nav-link" href="{{ homePage }}">Home</a>
+                    </li>
+                    {% url 'about' as aboutPage %}
+                    <li class="nav-item {% if request.path == aboutPage %}active{% endif %}">
+                        <a class="nav-link" href="{{ aboutPage }}">About LHASA-Mekong</a>
+                    </li>
+                    {% url 'map' as mapPage %}
+                    <li class="nav-item {% if request.path == mapPage %}active{% endif %}">
+                        <a class="nav-link" href="{{  mapPage }}">Map Viewer</a>
+                    </li>
+                    
+                    <!-- <li class="nav-item dropdown {% if request.path == userGuidePage %}active{% endif %}">
+                        <a class="nav-link dropdown-toggle" href="{}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          User Materials
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="{%static 'docs/210226 Concept Note_Mekong Reservoir Assessment Tool (RAT).docx' %}">Concept Note</a></li>
+                          <li><a class="dropdown-item" href="{%static 'docs/210920 Working Paper 1v3_RAT-Mekong.docx' %}">Working Paper</a></li>
+                          <li><a class="dropdown-item" href="https://saswe.net/publications/RATPaper.pdf" target="_blank">Research Paper 1</a></li>
+                          <li><a class="dropdown-item" href="{%static 'docs/211118 Working Paper 2v1_RAT-Mekong.docx' %}">Working Paper 2</a></li>
+                          <li><a class="dropdown-item" href="{%static 'docs/RAT-Mekong_User_Manual_V1.2.pdf' %}" target="_blank">User Manual</a></li>
+                          <li><a class="dropdown-item" href="/about/disclaimer">Disclaimer</a></li>
+                        </ul>
+                    </li> -->
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

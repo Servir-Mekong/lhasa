@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block container %}
+
+{% include 'navigation.html' %}
+
+<div class="bg-light ms-0 me-0 ps-0 pe-0 mt-0 pt-0 p-0">
+    <div class="jumbotron text-left">
+        <div class="jumbotron-card">
+            <div class="container">
+                <h1>LHASA</h1>
+                <h3><span class="jmb-highlight">Landslide </span><span class="jmb-highlight">H</span>azard <span class="jmb-highlight">A</span>ssessment for <span class="jmb-highlight">S</span>ituational <span class="jmb-highlight">Awareness</span></h3>
+                <a href="/map" class="btn btn-jumbotron btn-lg hvr-bounce-to-right" role="button">LAUNCH TOOL</a>
+            </div> 
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {% include 'partners.html' %}
+</div>
+
+{% include 'footer.html' %}
+
+{% endblock container %}

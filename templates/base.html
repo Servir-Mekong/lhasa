@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Landslide Hazard Assessment for Situational Awareness">
+	<meta name="author" content="SERVIR MEKONG">
+	<meta name="keywords" content="Landslide, Hazard Assessment, Landslide Assessment, Landslide Monitioring">
+    <title>LHASA-Mekong</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png" sizes="16x16"> 
+    <!-- Font-awesome -->
+    <link rel="stylesheet" href="{% static 'vendor/Font-Awesome/css/all.min.css' %}">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.min.css' %}">  
+    <!-- Custom CSS files -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/partners.css' %}">
+    <!-- Extra CSS files -->
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    {% block container %} {% endblock container%}
+
+	<!-- Bootstrap JS -->
+	<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.bundle.min.js'  %}"></script>
+    <!-- JQuery -->
+	<script src="{% static 'vendor/jquery/dist/jquery.min.js'  %}"></script>
+    {% block extra_script %}{% endblock %}
+</body>
+</html>

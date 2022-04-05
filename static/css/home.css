@@ -1,0 +1,157 @@
+/* jumbotron section*/
+.jumbotron {
+    margin-bottom: 0px;
+    margin-top: 0px; 
+    padding: 0;
+    background-image: url("/static/images/landslide.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 650px;
+} 
+.jumbotron-card{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 50%;
+    height: 100%;
+}
+.jumbotron-card h1{
+    text-align: left;
+    font-family: 'Ubuntu';
+    padding-left: 75px;
+    font-weight: 400;
+    padding-top: 80px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f4ff81;
+}
+.jumbotron h3{
+    text-align: left;
+    padding-left: 75px;
+    font-family: 'Ubuntu';
+    margin-top: 0px;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    color: #fff;
+    font-size: 20px;
+}
+.jmb-highlight{
+    color: #f4ff81; 
+    font-weight: bold;
+}
+.jumbotron .btn-jumbotron{
+    background-color: #f4ff81;
+    /* border-radius: 25px 25px 25px 25px; */
+    outline:none !important;
+    box-shadow: none !important;
+    padding-left: 35px;
+    padding-right: 35px;
+    color: #000;
+    margin-bottom: 100px;
+    margin-left: 75px;
+    font-family: 'ubuntu';
+    font-size: 14px;
+    font-weight: bold;
+}
+.jumbotron .btn-jumbotron:hover {
+    background-color: #eeff41;
+    /* border-radius: 25px 25px 25px 25px; */
+    outline:none !important;
+    box-shadow: none !important;
+    padding-left: 35px;
+    padding-right: 35px;
+    /* color: #fff;  */
+}
+/* Bounce To Top */
+.hvr-bounce-to-right:before {
+    background: #ef6c00;
+}
+.jumbotron p{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    padding-left: 0px;
+}
+@media only screen and (max-width: 576px) {
+    .jumbotron {
+        height: 350px;
+        text-align: center;
+    } 
+    .jumbotron-card{
+        background-color: rgba(0,0,0,.3);
+        width: 100%;
+    }
+    .jumbotron h1{
+        text-align: center;
+        padding-left: 0px;
+    }
+    .jumbotron h3{
+        text-align: center;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .jumbotron .btn-jumbotron{
+        margin-left: 0px;
+    }
+    .jumbotron p{
+        display: none;
+    }
+}
+@media (min-width: 577px) and (max-width: 800px){
+    .jumbotron-card{
+        background-color: rgba(0,0,0,.3);
+        width: 100%;
+    }
+}
+/* end jumbotron section*/
+.fld-dashboard{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.fld-dashboard .fld-dash-content {
+    list-style: none; /* Remove HTML bullets */
+    padding: 0;
+    margin: 0;
+} 
+.fld-dashboard .fld-dash-content li { 
+    padding: 10px;
+    background: #eee;
+}
+.fld-dashboard h4{
+    text-align: end;
+}
+  
+@media only screen and (max-width: 576px) {
+    .fld-dashboard h2{
+        text-align: center;
+    }
+    .fld-dashboard h4{
+        padding-top: 20px;
+        text-align: center;
+    }
+}
+
+.fld-dash-filter .nav-item{
+    background-color: #283593;
+}
+.fld-dash-filter .nav-item .active{
+    background-color: rgb(255,165,0);
+    color: rgb(41, 39, 39);
+}
+.fld-dash-filter .nav-link{
+    color: #fff;
+}
+.circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 60px;
+    /* font-size: 20px;
+    color: #283593;
+    font-weight: bold;
+    font-family: Arial; */
+    border: 5px solid #182dcf;
+}

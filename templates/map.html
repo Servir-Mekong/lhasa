@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- CSS files -->
+{% block extra_css %}
+<!-- Leaflet CSS-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<link rel="stylesheet" href="{% static 'css/map.css' %}">
+{% endblock %}
+
+{% block container %}
+
+{% include 'navigation.html' %}
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+    <nav>
+        <div class="nav nav-tabs flex-column" id="nav-tab" role="tablist">
+            <!-- <button class="nav-link active pt-3 pb-3" id="home" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false" data-bs-toggle="tooltip" data-bs-placement="right" title="Menu"><i class="fas fa-bars fa-lg"></i></button> -->
+            <button class="nav-link pt-3 pb-3" id="filter" data-bs-toggle="tab"
+                data-bs-target="#nav-filter" type="button" role="tab" aria-controls="nav-filter"
+                aria-selected="false" data-bs-toggle="tooltip" data-bs-placement="right" title="Filter Panel"><i
+                    class="fas fa-filter fa-lg"></i></button>
+            <button class="nav-link pt-3 pb-3" id="layer" data-bs-toggle="tab" data-bs-target="#nav-layer"
+                type="button" role="tab" aria-controls="nav-layer" aria-selected="false"
+                data-bs-toggle="tooltip" data-bs-placement="right" title="Layer Panel"><i
+                    class="fas fa-layer-group fa-lg"></i></button>
+            <button class="nav-link pt-3 pb-3" id="basemap" data-bs-toggle="tab" data-bs-target="#nav-basemap"
+                type="button" role="tab" aria-controls="nav-basemap" aria-selected="false"
+                data-bs-toggle="tooltip" data-bs-placement="right" title="Basemap Style"><i
+                    class="fa fa-globe fa-lg"></i></button>
+        </div>
+    </nav>
+</div>
+
+<!-- Sidebar Content -->
+<div class="sidebar-content" id="sidebar-content">
+    <div class="tab-content mt-0 pt-0" id="nav-tabContent">
+        <!-- Default tab content area -->
+        <!-- <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="home">  
+            <button type="button" class="btn btn-home-close shadow-none" id="close-home-content" aria-label="Close" data-bs-toggle="tooltip" data-bs-placement="right" title="Close Menu"><i class="fas fa-arrow-left fa-lg"></i></button>        
+        </div> -->
+        <!-- Filter tab content area -->
+        <div class="tab-pane fade show active" id="nav-filter" role="tabpanel" aria-labelledby="nav-filter-tab">
+            <div class="filter-header"><button type="button" class="btn btn-filter-close shadow-none"
+                id="close-filter-content" aria-label="Close" data-bs-toggle="tooltip"
+                data-bs-placement="right" title="Close Filter Menu"><i
+                    class="fas fa-arrow-left fa-lg"></i></button><span class="fw-bold fs-5">Filter
+                Panel</span></div>
+        </div>
+
+        <!--Layer tab content area -->
+        <div class="tab-pane fade" id="nav-layer" role="tabpanel" aria-labelledby="nav-layer-tab">
+            <div class="layer-header"><button type="button" class="btn btn-layer-close shadow-none"
+                    id="close-layer-content" aria-label="Close" data-bs-toggle="tooltip"
+                    data-bs-placement="right" title="Close Layer Panel"><i
+                        class="fas fa-arrow-left fa-lg"></i></button><span class="fw-bold fs-5">Layer
+                    Panel</span></div>
+            <div class="card card-body layer-card m-2 border-0">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="reservoirs_poly_toggle" id="reservoirs_poly_toggle">
+                    <label class="form-check-label" for="reservoirs_poly_toggle">Reservoirs Boundary</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="mekong_toggle" id="mekong_toggle" checked>
+                    <label class="form-check-label" for="mekong_toggle">Mekong Region</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="adm0_toggle" id="adm0_toggle">
+                    <label class="form-check-label" for="adm0_toggle">Country Boundary</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="gms_rivers_toggle"
+                        id="gms_rivers_toggle">
+                    <label class="form-check-label" for="gms_rivers_toggle">GMS Rivers</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="main_rivers_toggle"
+                        id="main_rivers_toggle">
+                    <label class="form-check-label" for="main_rivers_toggle">Main Rivers</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="sub_basin_toggle"
+                        id="sub_basin_toggle">
+                    <label class="form-check-label" for="sub_basin_toggle">River Sub-basin</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Basemap tab content area -->
+        <div class="tab-pane fade nav-basemap" id="nav-basemap" role="tabpanel"
+            aria-labelledby="nav-basemap-tab">
+            <div class="layer-header"><button type="button" class="btn btn-layer-close shadow-none"
+                    id="close-basemap-content" aria-label="Close" data-bs-toggle="tooltip"
+                    data-bs-placement="right" title="Close Basemap"><i
+                        class="fas fa-arrow-left fa-lg"></i></button><span class="fw-bold fs-5">Basemap
+                    Style</span></div>
+
+            <!-- Basemap from Esri -->
+            <div class="card basemap-card active m-4" data-layer="street">
+                <div class="d-flex flex-row bd-highlight">
+                    <div class="bd-highlight"><img src="{% static 'images/esri-street.png' %}"
+                            class="basemap-img" height="60px" width="60px" alt="Esri World Streets Basemap">
+                    </div>
+                    <div class="bd-highlight pt-3 ps-4">
+                        <h6>Esri Streets<br><small>Esri World Streets Basemap</small></h6>
+                    </div>
+                </div>
+            </div>
+            <!-- OSM Basemap -->
+            <div class="card basemap-card m-4" data-layer="osm">
+                <div class="d-flex flex-row bd-highlight">
+                    <div class="bd-highlight"><img src="{% static 'images/osm.png' %}" class="basemap-img"
+                            height="60px" width="60px" alt="OSM World Streets Map"></div>
+                    <div class="bd-highlight pt-3 ps-4">
+                        <h6>OpenStreetMap<br><small>OSM World Streets Map</small></h6>
+                    </div>
+                </div>
+            </div>
+            <div class="card basemap-card m-4" data-layer="satellite">
+                <div class="d-flex flex-row bd-highlight">
+                    <div class="bd-highlight"><img src="{% static 'images/esri-satellite.png' %}"
+                            class="basemap-img" height="60px" width="60px" alt="Esri World Satellite Imagery">
+                    </div>
+                    <div class="bd-highlight pt-3 ps-4">
+                        <h6>Satellite Map<br><small>Esri World Satellite Imagery</small></h6>
+                    </div>
+                </div>
+            </div>
+            <div class="card basemap-card m-4" data-layer="topo">
+                <div class="d-flex flex-row bd-highlight">
+                    <div class="bd-highlight"><img src="{% static 'images/esri-topo.png' %}" class="basemap-img"
+                            height="60px" width="60px" alt="Esri World Topographic Map"></div>
+                    <div class="bd-highlight pt-3 ps-4">
+                        <h6>Topographic Map<br><small>Esri World Topographic Map</small></h6>
+                    </div>
+                </div>
+            </div>
+            <div class="card basemap-card m-4" data-layer="terrain">
+                <div class="d-flex flex-row bd-highlight">
+                    <div class="bd-highlight"><img src="{% static 'images/esri-terrain.png' %}"
+                            class="basemap-img" height="60px" width="60px" alt="Esri World Terrain Basemap">
+                    </div>
+                    <div class="bd-highlight pt-3 ps-4">
+                        <h6>Terrain Map<br><small>Esri World Terrain Basemap</small></h6>
+                    </div>
+                </div>
+            </div>
+            <div class="card basemap-card m-4" data-layer="gray">
+                <div class="d-flex flex-row bd-highlight">
+                    <div class="bd-highlight"><img src="{% static 'images/esri-gray.png' %}" class="basemap-img"
+                            height="60px" width="60px" alt="Esri World Gray Map"></div>
+                    <div class="bd-highlight pt-3 ps-4">
+                        <h6>Gray Map<br><small>Esri World Gray Map</small></h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Basemap from Carto Map -->
+            <div class="card basemap-card m-4" data-layer="dark">
+                <div class="d-flex flex-row bd-highlight">
+                    <div class="bd-highlight"><img src="{% static 'images/carto-dark.png' %}"
+                            class="basemap-img" height="60px" width="60px" alt="Carto World Dark Map"></div>
+                    <div class="bd-highlight pt-3 ps-4">
+                        <h6>Dark Map<br><small>Carto World Dark Map</small></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="map"></div>
+
+{% endblock container%}
+
+<!-- Extra JS files -->
+{% block extra_script %}
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<!-- Custom JS -->
+<script src="{% static 'js/index.js' %}"></script>
+
+{% endblock %}
