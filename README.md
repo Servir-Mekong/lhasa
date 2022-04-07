@@ -1,7 +1,7 @@
-### The steps are meant to turn a generic Ubuntu server into an Django server hosting the LHASA-Mekong tool with PostgreSQL, Nginx, Gunicorn and Virtualenv
+### The steps are meant to turn a generic Ubuntu server into an Django server hosting the LHASA tool with PostgreSQL, Nginx, Gunicorn and Virtualenv
 
-### About LHASA-Mekong Tool
-The LHASA-Mekong is a web application for Predicting Hydrologic Impact and Operating Pattern of Existing and Planned Reservoirs of the Lower Mekong Region.
+### About LHASA Tool
+The LHASA is a web application for Landslide Hazard Assessment for Situational Awareness of the Mekong Region.
 
 ### Update Ubuntu Server
 ```
@@ -11,7 +11,7 @@ sudo apt clean
 ```
 ### Install necessary packages
 ```
-sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
+sudo apt install python3.9 python3.9-dev python3.9-venv libpq-dev postgresql postgresql-contrib nginx curl
 ```
 ### Git installation and configuration
 ```
@@ -50,36 +50,28 @@ postgres# \q
 
 [Reference - Additional Informations](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-20-04)
 ```
-### Install Python Virtual Environment
+### Create an empty directory for lhasa_tool
 ```
-// First upgrade pip version
-sudo -H pip3 install --upgrade pip
-
-// Install virtual environment using pip
-sudo -H pip3 install virtualenv
-```
-### Create an empty directory for rattool
-```
-mkdir /home/ubuntu/rattool
+mkdir /home/ubuntu/lhasa_tool
 ```
 ### Create a Python3 Virtual Environment
 ```
-// Navigate to rattool directory
-cd /home/ubuntu/rattool
+// Navigate to lhasa_tool directory
+cd /home/ubuntu/lhasa_tool
 
-// Create a virtual environment name rat_env
-python3 -m venv rat_env
+// Create a virtual environment name lhasa_env
+python3 -m venv lhasa_env
 
 // Now activate the virtual environment
-source rat_env/bin/activate
+source lhasa_env/bin/activate
 ```
 ### Download and setup the rat_mekong from git
 ```
 // git clone rat_mekong_github_address
-git clone https://github.com/Servir-Mekong/rat_mekong.git
+git clone https://github.com/Servir-Mekong/lhasa.git
 
 // Change directory
-cd rat_mekong
+cd lhasa
 
 // Install dependencies from the requirements.txt
 pip install -r requirements.txt
@@ -138,7 +130,7 @@ python manage.py collectstatic
 ### Test Django server
 ```
 // Allow 8000 port to UFW firewall
-sudo UFW allow 8000
+sudo ufw allow 8000
 
 // Check server by 
 python manage.py runserver 0.0.0.0:8000
@@ -190,12 +182,12 @@ PIDFile=/run/gunicorn/pid
 User=ubuntu
 Group=ubuntu
 RuntimeDirectory=gunicorn
-WorkingDirectory=/home/ubuntu/rattool/rat_mekong
-ExecStart=/home/ubuntu/rattool/rat_env/bin/gunicorn \
+WorkingDirectory=/home/ubuntu/lhasa_tool/lhasa
+ExecStart=/home/ubuntu/lhasa_tool/lhasa_env/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
-         rat.wsgi:application
+         lhasa.wsgi:application
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID
 PrivateTmp=true
@@ -211,7 +203,7 @@ sudo systemctl status gunicorn.socket
 ### Configure Nginx to Proxy Pass to Gunicorn
 ```
 // Start by creating and opening a new server block in Nginx’s sites-available directory:
-sudo nano /etc/nginx/sites-available/rat_mekong
+sudo nano /etc/nginx/sites-available/lhasa_tool
 
 // Edit the file
 server {
@@ -220,7 +212,7 @@ server {
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        root /home/ubuntu/rattool;
+        root /home/ubuntu/lhasa_tool;
     }
 
     location / {
@@ -232,7 +224,7 @@ server {
 // Now save and exit
 
 // Enable the file by linking it to the sites-enabled directory
-sudo ln -s /etc/nginx/sites-available/rat_mekong /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/lhasa_tool /etc/nginx/sites-enabled
 ```
 ### Test and configure NGINX
 ```
