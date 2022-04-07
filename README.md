@@ -65,7 +65,7 @@ python3 -m venv lhasa_env
 // Now activate the virtual environment
 source lhasa_env/bin/activate
 ```
-### Download and setup the rat_mekong from git
+### Git Clone the lhasa tool from github and install packages
 ```
 // git clone rat_mekong_github_address
 git clone https://github.com/Servir-Mekong/lhasa.git

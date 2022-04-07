@@ -58,31 +58,12 @@
                     Panel</span></div>
             <div class="card card-body layer-card m-2 border-0">
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" name="reservoirs_poly_toggle" id="reservoirs_poly_toggle">
-                    <label class="form-check-label" for="reservoirs_poly_toggle">Reservoirs Boundary</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" name="mekong_toggle" id="mekong_toggle" checked>
-                    <label class="form-check-label" for="mekong_toggle">Mekong Region</label>
-                </div>
-                <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" name="adm0_toggle" id="adm0_toggle">
                     <label class="form-check-label" for="adm0_toggle">Country Boundary</label>
                 </div>
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" name="gms_rivers_toggle"
-                        id="gms_rivers_toggle">
-                    <label class="form-check-label" for="gms_rivers_toggle">GMS Rivers</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" name="main_rivers_toggle"
-                        id="main_rivers_toggle">
-                    <label class="form-check-label" for="main_rivers_toggle">Main Rivers</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" name="sub_basin_toggle"
-                        id="sub_basin_toggle">
-                    <label class="form-check-label" for="sub_basin_toggle">River Sub-basin</label>
+                    <input class="form-check-input" type="checkbox" name="adm1_toggle" id="adm1_toggle">
+                    <label class="form-check-label" for="adm0_toggle">Province Boundary</label>
                 </div>
             </div>
         </div>
@@ -175,8 +156,13 @@
 <!-- Extra JS files -->
 {% block extra_script %}
 
+<!-- Load Data -->
+<script src="{% static 'data/adm0.geojson' %}"></script>
+<script src="{% static 'data/adm1.geojson' %}"></script>
+
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
 <!-- Custom JS -->
 <script src="{% static 'js/index.js' %}"></script>
 

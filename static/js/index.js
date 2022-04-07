@@ -144,3 +144,71 @@ $('#nav-basemap div').on('click', function(e) {
     } 
 });
 /** End Basemap Panel */
+
+//Define country boundary style
+var adm0Style = {
+    color: "#6A5ACD",
+    weight: 1.0,
+    //opacity: 0.6,
+    //fillOpacity: 0.3,
+    fillColor: "none",
+};
+var adm1Style = {
+    color: "#6A5ACD",
+    weight: 1.0,
+    //opacity: 0.6,
+    //fillOpacity: 0.3,
+    fillColor: "none",
+};
+// Highlight feature style
+var highlightStyle = {
+    color: '#00008B', 
+    weight: 1.0,
+    opacity: 0.6,
+    fillOpacity: 0.65,
+    // fillColor: '#2262CC'
+};
+
+var adm0_layer = L.geoJson(adm0, {
+    style: adm0Style,
+    onEachFeature: function(feature, admin0Layer) {
+        admin0Layer.bindTooltip(feature.properties.NAME_0);
+        // admin0Layer.on('mouseover', function (e) {
+        //     this.setStyle(highlightStyle);
+        //     this.bindTooltip(feature.properties.NAME_0);
+        // }); 
+        // admin0Layer.on('mouseout', function (e) {
+        //     this.setStyle(adm0Style);
+        // });                   
+    } 
+});
+
+var adm1_layer = L.geoJson(adm1, {
+    style: adm1Style,
+    onEachFeature: function(feature, admin1Layer) {
+        admin1Layer.bindTooltip(feature.properties.NAME_1);
+        // admin1Layer.on('mouseover', function (e) {
+        //     this.setStyle(highlightStyle);
+        //     this.bindTooltip(feature.properties.NAME_1);
+        // }); 
+        // admin1Layer.on('mouseout', function (e) {
+        //     this.setStyle(adm0Style);
+        // });                   
+    } 
+});
+
+$('input[type=checkbox][name=adm0_toggle]').click(function(){
+    if(this.checked) {
+        map.addLayer(adm0_layer);
+    } else {
+        map.removeLayer(adm0_layer);
+    }
+});
+
+$('input[type=checkbox][name=adm1_toggle]').click(function(){
+    if(this.checked) {
+        map.addLayer(adm1_layer);
+    } else {
+        map.removeLayer(adm1_layer);
+    }
+});

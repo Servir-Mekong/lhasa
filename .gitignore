@@ -3,6 +3,7 @@
 
 #ignore static files
 static/vendor/*
+static/data/*
 
 #ignore settings
 lhasa/local_settings.py
