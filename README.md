@@ -67,7 +67,7 @@ source lhasa_env/bin/activate
 ```
 ### Git Clone the lhasa tool from github and install packages
 ```
-// git clone rat_mekong_github_address
+// git clone lhasa_github_address
 git clone https://github.com/Servir-Mekong/lhasa.git
 
 // Change directory
@@ -82,8 +82,8 @@ pip install gunicorn
 ```
 ### Create and config local_settings.py file
 ```
-// Navigate to rat directory
-cd rat
+// Navigate to lhasa directory
+cd lhasa
 
 // Open an empty python file
 sudo nano local_settings.py
@@ -108,7 +108,7 @@ DATABASES = {
 ```
 ### Migrate database and create superuser to access Django admin panel
 ```
-// Back to rat_mekong directory
+// Back to lhasa directory
 cd ..
 
 // Now migrate by
@@ -140,7 +140,7 @@ http://server_domain_or_IP:8000
 ```
 ### Testing Gunicorn’s Ability to Serve the Project
 ```
-gunicorn --bind 0.0.0.0:8000 rat.wsgi
+gunicorn --bind 0.0.0.0:8000 lhasa.wsgi
 
 // Now open a browser and check the development server with gunicorn by typing
 http://server_domain_or_IP:8000

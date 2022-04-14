@@ -47,6 +47,29 @@
                 data-bs-placement="right" title="Close Filter Menu"><i
                     class="fas fa-arrow-left fa-lg"></i></button><span class="fw-bold fs-5">Filter
                 Panel</span></div>
+            <div class="card card-body layer-card m-2 border-0">
+                <div class="mb-1">
+                    <label for="dateSelection" class="form-label">Select Date</label>
+                    <input type="date" class="form-control" id="dateSelection">
+                </div>     
+            </div>
+            <div class="card card-body layer-card m-2 border-0">
+                <select class="form-select" aria-label="Default select example">
+                    <option disabledselected>-- Choose Model --</option>
+                    <option value="1">Nowcast</option>
+                    <option value="2">Forecast</option>
+                </select>
+            </div>
+            <div class="card card-body layer-card m-2 border-0">
+                <select class="form-select" aria-label="Default select example">
+                    <option disabledselected>-- Select Visualization Parameter --</option>
+                    <option value="1">Hazard</option>
+                    <option value="2">Exposure</option>
+                    <option value="3">1-Day Precipitation</option>
+                    <option value="4">3-Day Precipitation</option>
+                    <option value="5">Soil Moisture Condition</option>
+                </select>
+            </div>
         </div>
 
         <!--Layer tab content area -->
@@ -63,7 +86,7 @@
                 </div>
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" name="adm1_toggle" id="adm1_toggle">
-                    <label class="form-check-label" for="adm0_toggle">Province Boundary</label>
+                    <label class="form-check-label" for="adm1_toggle">Province Boundary</label>
                 </div>
             </div>
         </div>
