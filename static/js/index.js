@@ -112,18 +112,6 @@ closeBasemapSidebarContent.onclick = function(){
 // Onclick switch basemap 
 $('#nav-basemap div').on('click', function(e) {
     var selected_basemap = this.getAttribute('data-layer');
-    //MapBox Basemap
-    // if((selected_basemap === "street")){
-    //     basemap_layer.setUrl('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}');
-    // }else if(selected_basemap === "osm"){
-    //     basemap_layer.setUrl('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    // }else if(selected_basemap === "osm"){
-    //     basemap_layer.setUrl('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    // }else if(selected_basemap === "osm"){
-    //     basemap_layer.setUrl('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    // }else if(selected_basemap === "osm"){
-    //     basemap_layer.setUrl('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    // }else 
     if(selected_basemap === "osm"){
         basemap_layer.setUrl('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');    
     }else if((selected_basemap === "street")){
@@ -145,55 +133,64 @@ $('#nav-basemap div').on('click', function(e) {
 });
 /** End Basemap Panel */
 
-//Define country boundary style
+/* 
+   ========= Earth engine layer ============
+*/
+selected_date = '2022-07-30'
+
+// Define Earth Engine LHASA Layer in Leaflet
+var lhasa_layer = L.tileLayer('', {
+    attribution: '&copy; <a href="https://earthengine.google.com" target="_blank">Google Earth Engine</a> contributors'
+}).addTo(map);
+
+$.ajax({
+    url: '/ajax/lhasamap/',
+    type: "GET",
+    data: {
+        "selected_date": selected_date,
+    },
+    dataType: 'json',
+    // async: false,
+    success: (data) => {
+        lhasa_layer.setUrl(data); 
+    },
+    error: (error) => {
+        console.log(error);
+    }
+});
+
+// Define country boundary style
 var adm0Style = {
     color: "#6A5ACD",
     weight: 1.0,
-    //opacity: 0.6,
-    //fillOpacity: 0.3,
-    fillColor: "none",
+    fillOpacity: 0.0,
+    fillColor: '#ffc107'
 };
 var adm1Style = {
     color: "#6A5ACD",
     weight: 1.0,
-    //opacity: 0.6,
-    //fillOpacity: 0.3,
-    fillColor: "none",
+    fillOpacity: 0.0,
+    fillColor: '#ffc107'
 };
 // Highlight feature style
 var highlightStyle = {
     color: '#00008B', 
     weight: 1.0,
-    opacity: 0.6,
-    fillOpacity: 0.65,
-    // fillColor: '#2262CC'
+    fillOpacity: 0.0,
+    fillColor: '#ffc107'
 };
 
 var adm0_layer = L.geoJson(adm0, {
     style: adm0Style,
     onEachFeature: function(feature, admin0Layer) {
-        admin0Layer.bindTooltip(feature.properties.NAME_0);
-        // admin0Layer.on('mouseover', function (e) {
-        //     this.setStyle(highlightStyle);
-        //     this.bindTooltip(feature.properties.NAME_0);
-        // }); 
-        // admin0Layer.on('mouseout', function (e) {
-        //     this.setStyle(adm0Style);
-        // });                   
+        admin0Layer.bindTooltip(feature.properties.NAME_0);                
     } 
 });
 
 var adm1_layer = L.geoJson(adm1, {
     style: adm1Style,
     onEachFeature: function(feature, admin1Layer) {
-        admin1Layer.bindTooltip(feature.properties.NAME_1);
-        // admin1Layer.on('mouseover', function (e) {
-        //     this.setStyle(highlightStyle);
-        //     this.bindTooltip(feature.properties.NAME_1);
-        // }); 
-        // admin1Layer.on('mouseout', function (e) {
-        //     this.setStyle(adm0Style);
-        // });                   
+        admin1Layer.bindTooltip(feature.properties.NAME_1);                 
     } 
 });
 
