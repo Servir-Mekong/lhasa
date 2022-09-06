@@ -47,29 +47,131 @@
                 data-bs-placement="right" title="Close Filter Menu"><i
                     class="fas fa-arrow-left fa-lg"></i></button><span class="fw-bold fs-5">Filter
                 Panel</span></div>
-            <div class="card card-body layer-card m-2 border-0">
+            <!-- <div class="card card-body layer-card m-2 border-0">
                 <div class="mb-1">
-                    <label for="dateSelection" class="form-label">Select Date</label>
-                    <input type="date" class="form-control" id="dateSelection">
+                    <p class="fw-bold"> Select Date (YYYY-MM-DD) </p>
+                    <div class="form-group ">
+                        <input class = "form-control" id="date_selection"
+                        name="date_selection"
+                        type="text"
+                        data-provide="datepicker" 
+                        value="2022-01-01"                         
+                        data-date-autoclose="true"
+                        data-date-format="yyyy-mm-dd"
+                        data-date-min-view-mode="days"
+                        data-date-multidate="1"
+                        data-date-start-view="decade"
+                        data-date-today-btn="false">
+                    </div> 
                 </div>     
-            </div>
-            <div class="card card-body layer-card m-2 border-0">
-                <select class="form-select" aria-label="Default select example">
-                    <option disabledselected>-- Choose Model --</option>
-                    <option value="1">Nowcast</option>
-                    <option value="2">Forecast</option>
+            </div> -->
+            <!-- <div class="card card-body layer-card m-2 border-0">
+                <p class="fw-bold"> Select Model </p>
+                <select class="form-select" aria-label="modelSelection" id="modelSelection">
+                    <option disabled>-- Choose Model --</option>
+                    <option value="nowcast" selected>Nowcast</option>
+                    <option value="forecast">Forecast</option>
                 </select>
-            </div>
-            <div class="card card-body layer-card m-2 border-0">
-                <select class="form-select" aria-label="Default select example">
-                    <option disabledselected>-- Select Visualization Parameter --</option>
-                    <option value="1">Hazard</option>
-                    <option value="2">Exposure</option>
-                    <option value="3">1-Day Precipitation</option>
-                    <option value="4">3-Day Precipitation</option>
-                    <option value="5">Soil Moisture Condition</option>
+            </div> -->
+            <!-- <div class="card card-body layer-card m-2 border-0">
+                <p class="fw-bold"> Select Visualization </p>
+                <select class="form-select" aria-label="visualParams" id="visualParams">
+                    <option disabled>-- Select Visualization Parameter --</option>
+                    <option value="hazard-viz" selected>Hazard</option>
+                    <option value="exposure-viz">Exposure</option>
+                    <option value="precip-1-viz">1-Day Precipitation</option>
+                    <option value="precip-1-viz">3-Day Precipitation</option>
+                    <option value="soil-moist-cond">Soil Moisture Condition</option>
                 </select>
-            </div>
+            </div> -->
+            <div class="accordion m-3" id="accordionExample">
+                <!-- Model selection card -->
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header text-white">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseModelSelection" aria-expanded="true" aria-controls="collapseModelSelection">
+                            <i class="fa-solid fa-triangle-exclamation pe-2"></i>Hazard Map
+                        </button>
+                    </h2>
+                    <div id="collapseModelSelection" class="accordion-collapse collapse show" aria-labelledby="modelSelection" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <p class="fw-bold"> Select Model </p>
+                            <select class="form-select" aria-label="modelSelection" id="modelSelection">
+                                <option value="none" disabled>-- Choose Model --</option>
+                                <option value="nowcast" selected>Nowcast</option>
+                                <option value="forecast">Forecast</option>
+                            </select>
+                            <p class="pt-3"> Select Date (YYYY-MM-DD) </p>
+                            <div class="form-group" id="nowcast-date-panel">
+                                <input class = "form-control" id="date_selection_nowcast"
+                                name="date_selection_nowcast"
+                                type="text"
+                                data-provide="datepicker"                          
+                                data-date-autoclose="true"
+                                data-date-format="yyyy-mm-dd"
+                                data-date-min-view-mode="days"
+                                data-date-multidate="1"
+                                data-date-start-view="decade"
+                                data-date-today-btn="false">
+                            </div> 
+                            <div class="form-group" id="forecast-date-panel">
+                                <input class = "form-control" id="date_selection_forecast"
+                                name="date_selection_forecast"
+                                type="text"
+                                data-provide="datepicker"                          
+                                data-date-autoclose="true"
+                                data-date-format="yyyy-mm-dd"
+                                data-date-min-view-mode="days"
+                                data-date-multidate="1"
+                                data-date-start-view="decade"
+                                data-date-today-btn="false">
+                            </div> 
+                        </div>
+                    </div>
+                </div> 
+                <!-- Precipitation data card -->
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header" id="precipMap">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrecipMap" aria-expanded="false" aria-controls="collapsePrecipMap">
+                            <i class="fas fa-cloud-rain pe-2"></i>Precipitation Map
+                        </button>
+                    </h2>
+                    <div id="collapsePrecipMap" class="accordion-collapse collapse" aria-labelledby="precipMap" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="form-check pb-2">
+                                <input class="form-check-input" id="precipCB" type="checkbox" value="precip">
+                                <label class="form-check-label" for="precipCB"><b>Precipitation Map</b><br><small>Checked to overlay precipitation map</small></label>
+                            </div>
+                            <p class="pt-3"> Select Date (YYYY-MM-DD) to Update Precipitation Map</p>
+                            <div class="form-group pb-3">
+                                <input class = "form-control" id="date_selection_precip"
+                                name="date_selection_precip"
+                                type="text"
+                                data-provide="datepicker"                          
+                                data-date-autoclose="true"
+                                data-date-format="yyyy-mm-dd"
+                                data-date-min-view-mode="days"
+                                data-date-multidate="1"
+                                data-date-start-view="decade"
+                                data-date-today-btn="false">
+                            </div> 
+                            <!-- <label for="precip-opacity" class="form-label">Opacity:</label><br>
+                            <input id="precip-opacity" data-slider-id='precip-opacity' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.1" data-slider-value="1"/> -->
+                            <p class="pt-3">Select Accumulation Map:</p>
+                            <select class="form-select" id="product_selection">
+                                <option value="1|0">1 Day Accumulation</option>
+                                <!-- <option value="2|0">2 Day Accumulation</option> -->
+                                <option value="3|0">3 Day Accumulation</option>
+                            </select>
+                            <p class="pt-3">Select Colormap: </p>
+                            <select class="form-select" id="cmap_selection">
+                                <option value="nipy_spectral">nipy_spectral</option>
+                                <option value="gist_ncar">gist_ncar</option>
+                                <option value="cubehelix">cubehelix</option>
+                            </select>
+                        </div>
+                    </div>
+                </div> 
+            </div>   
         </div>
 
         <!--Layer tab content area -->
@@ -87,6 +189,10 @@
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" name="adm1_toggle" id="adm1_toggle">
                     <label class="form-check-label" for="adm1_toggle">Province Boundary</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="adm2_toggle" id="adm2_toggle">
+                    <label class="form-check-label" for="adm2_toggle">District Boundary</label>
                 </div>
             </div>
         </div>
@@ -182,6 +288,7 @@
 <!-- Load Data -->
 <script src="{% static 'data/adm0.geojson' %}"></script>
 <script src="{% static 'data/adm1.geojson' %}"></script>
+<script src="{% static 'data/adm2.geojson' %}"></script>
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>

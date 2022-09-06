@@ -11,10 +11,13 @@
     <title>LHASA-Mekong</title>
     <!-- Favicon -->
     <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png" sizes="16x16"> 
-    <!-- Font-awesome -->
-    <link rel="stylesheet" href="{% static 'vendor/Font-Awesome/css/all.min.css' %}">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.min.css' %}">  
+    <!-- Bootstrap Date Picker -->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
+    <!-- Font-awesome -->
+    <link rel="stylesheet" href="{% static 'vendor/Font-Awesome/css/all.min.css' %}">
+    
     <!-- Custom CSS files -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
@@ -28,10 +31,15 @@
 
     {% block container %} {% endblock container%}
 
-	<!-- Bootstrap JS -->
-	<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.bundle.min.js'  %}"></script>
-    <!-- JQuery -->
-	<script src="{% static 'vendor/jquery/dist/jquery.min.js'  %}"></script>
+	<!-- jQuery -->
+	<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+	
+    <!-- Bootstrap JS -->
+	<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js'  %}"></script>
+	
+    <!-- Bootstrap Date Picker Plugins -->
+	<script src="{% static 'vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+    
     {% block extra_script %}{% endblock %}
 </body>
 </html>
