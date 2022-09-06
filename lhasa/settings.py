@@ -119,3 +119,12 @@ try:
     from lhasa.local_settings import *
 except ImportError:
     pass
+
+from google.oauth2 import service_account
+gettext = lambda s: s
+
+import ee
+service_account = 'hydrafloods@hydrafloods-308007.iam.gserviceaccount.com'
+EE_PRIVATE_KEY_FILE = os.path.join(BASE_DIR, 'credentials/privatekey.json')
+credentials = ee.ServiceAccountCredentials(service_account, EE_PRIVATE_KEY_FILE)
+ee.Initialize(credentials)

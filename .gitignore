@@ -1,17 +1,18 @@
-#ignore python compile files
+# ignore python compile files
 *.pyc
 
-#ignore static files
+# ignore static files
 static/vendor/*
 static/data/*
 
-#ignore settings
+# ignore settings
 lhasa/local_settings.py
+credentials/*
 
 #ignore db
 *.sqlite3
 
-#node and related environment files
+# node and related environment files
 .npmignore
 node_modules/
 __pycache__/
