@@ -15,7 +15,7 @@ import matplotlib as mpl
 mpl.use('Agg')
 mpl.rcParams.update({'font.size': 14})
 # /////////////////////////////////////////////
-ee.Initialize()
+# ee.Initialize()
 
 class MainGEEApi():
 
