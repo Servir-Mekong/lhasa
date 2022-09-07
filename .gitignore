@@ -7,6 +7,7 @@ static/data/*
 
 # ignore settings
 lhasa/local_settings.py
+lhasa/settings.py
 credentials/*
 
 #ignore db
